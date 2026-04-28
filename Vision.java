@@ -32,11 +32,31 @@ public class Vision{
 		}
 	}
 
-	public Path findFood(){
+	public Path find(String toFind){
+		Class<?> findType;
+		if(toFind.equals("Food")){
+			findType = FoodBonus.class;
+		}
+		else if(toFind.equals("Water")){
+			findType = WaterBonus.class;
+		}
+		else if(toFind.equals("Gold")){
+			findType = GoldBonus.class;
+		}
+		else if(toFind.equals("Trader")){
+			findType = Trader.class;
+		}
+		else if(toFind.equals("East")){
+			return findEast();
+		}
+		else{
+			return null;
+		}
+		
 		int best = -1;
 		for(int i = 0; i < tiles.length; i++){
 			Square s = tiles[i];
-			if(s.getItem() != null && (s.getItem() instanceof FoodBonus)){
+			if(s.getItem() != null && (s.getItem() instanceof findType)){
 				if(best == -1){
 					best = s;
 				}
@@ -64,14 +84,6 @@ public class Vision{
 			return null;
 		}
 		return new Path(sight[i], tiles[i].getTerrain().getCosts());
-	}
-
-	public Path findWater(){
-
-	}
-
-	public Path findTrader(){
-
 	}
 
 	public Path findEast(){
