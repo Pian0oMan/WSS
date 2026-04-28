@@ -9,16 +9,16 @@ public class Vision{
 		brain = b;
 		map = m;
 		if(visionType.equals("Focused"){
-			sight = new int[][] { {-1, 1}, {0, 1}, {1, 1}, {-1, 2}, {0, 2}, {1, 2} };
+			sight = new int[][] { {0, 1}, {-1, 1}, {1, 1}, {0, 2}, {-1, 2}, {1, 2} };
 		}
 		else if(visionType.equals("Eyes Peeled"){
-			sight = new int[][] { {-1, 0}, {1, 0}, {-1, 1}, {0, 1}, {1, 1}, {0, 2} };
+			sight = new int[][] { {-1, 0}, {1, 0}, {0, 1}, {-1, 1}, {1, 1}, {0, 2} };
 		}
 		else if(visionType.equals("Far Sighted"){
-			sight = new int[][] { {0, 1}, {-1, 2}, {0, 2}, {1, 2}, {-2, 3}, {2, 3} };
+			sight = new int[][] { {0, 1}, {0, 2}, {-1, 2}, {1, 2}, {-2, 3}, {2, 3} };
 		}
 		else if(visionType.equals("Cross Eyed"){
-			sight = new int[][] { {-1, 0}, {1, 0}, {-2, 1}, {-1, 1}, {1, 1}, {2, 1} };
+			sight = new int[][] { {-1, 0}, {1, 0}, {-1, 1}, {1, 1}, {-2, 1}, {2, 1} };
 		}
 		else{
 			sight = new int[][] { {0, 1} };
@@ -41,7 +41,22 @@ public class Vision{
 					best = s;
 				}
 				else{
-					if(best.)
+					Square comp = tiles[best];
+					//compare if items are repeating or not
+					if(!comp.getItem().isRepeating() && s.getItem().isRepeating()){
+						best = i;
+					}
+					else if(comp.getItem().isRepeating() && !s.getItem().isRepeating()){
+						continue;
+					}
+					//compare item values
+					if(comp.getItem().getValue() < s.getItem().getValue()){
+						best = i;
+					}
+					else if(comp.getItem().getValue() > s.getItem().getValue()){
+						continue;
+					}
+					//WIP: compare cost to acquire
 				}
 			}
 		}
