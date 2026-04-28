@@ -36,7 +36,7 @@ public class Vision{
 		int best = -1;
 		for(int i = 0; i < tiles.length; i++){
 			Square s = tiles[i];
-			if(s.getItem() != null){
+			if(s.getItem() != null && (s.getItem() instanceof FoodBonus)){
 				if(best == -1){
 					best = s;
 				}
