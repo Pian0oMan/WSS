@@ -38,21 +38,31 @@ public class Map {
 
         if (difficulty == 1)
         {
-            if (roll <= 30)
+            if (roll <= 40)
                 return TerrainType.PLAINS;
-            if (roll <= 60)
+            if (roll <= 65)
                 return TerrainType.FOREST;
-            else
+			if (roll <= 75)
                 return TerrainType.MOUNTAIN;
+			if (roll <= 85)
+				return TerrainType.DESERT;
+			else {
+				return TerrainType.SWAMP;
+			}
         }
         else
         {
-            if (roll <= 40)
-                return TerrainType.DESERT;
-            if (roll <= 70)
+            if (roll <= 30)
                 return TerrainType.MOUNTAIN;
-            else
-                return TerrainType.SWAMP;
+            if (roll <= 55)
+                return TerrainType.DESERT;
+			if (roll <= 75)
+				return TerrainType.SWAMP;
+			if (roll <= 85)
+				return TerrainType.PLAINS;
+			else {
+				return TerrainType.FOREST;
+			}
         }
     }
     
