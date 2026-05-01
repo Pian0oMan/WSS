@@ -1,5 +1,5 @@
 import java.util.Random;
-public class Map {
+public class gameMap {
 
     //chances in integers representing CHANCE/100
     private int ITEM_CHANCE = 10;
@@ -10,7 +10,7 @@ public class Map {
     private Square[][] grid;
     private Random rand = new Random();
 
-    public Map(int width, int height, int difficulty)
+    public gameMap(int width, int height, int difficulty)
     {
         this.width = width;
         this.height = height;
@@ -20,7 +20,7 @@ public class Map {
         populateItems();
     }
 
-    public static void generateTerrain(int difficulty)
+    public void generateTerrain(int difficulty)
     {
     for (int i = 0; i < height; i++)
         {

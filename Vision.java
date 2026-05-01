@@ -87,6 +87,42 @@ public class Vision{
 	}
 
 	public Path findEast(){
+		int best = -1;
+		for(int i = 0; i < tiles.length; i++){
+			if(best == -1){
+				best = s;
+			}
+			else{
+				//compare if location is further east or not
+				if(sight[best][1] < sight[i][1]){
+					best = i;
+				}
+				else if(sight[best][1] > sight[i][1]){
+					continue;
+				}
+				//compare terrain costs (for now only considers final tile's terrain cost)
+				int currentSumTerrainCost = Arrays.stream(tiles[i].getTerrain().getCosts()).sum();
+				int bestSumTerrainCost = Arrays.stream(tiles[best].getTerrain().getCosts()).sum();
+				if(currentSumTerrainCost > bestSumTerrainCost){
+					best = i;
+				}
+				else if(currentSumTerrainCost < bestSumTerrainCost){
+					continue;
+				}
+			}
+		}
+		if(best == -1){
+			return null;
+		}
+		return new Path(sight[i], tiles[i].getTerrain().getCosts());
+	}
 
+	public int[] findFirstStep(Path p){
+		IntStream path = Arrays.stream(p.getPosition());
+		if(path.max() <= 1 && path.min() >= -1){
+			return p.getPosition();
+		}
+
+		//implement later
 	}
 }
