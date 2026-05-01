@@ -20,7 +20,7 @@ public class Map {
         populateItems();
     }
 
-    public void generateTerrain(int difficulty)
+    public static void generateTerrain(int difficulty)
     {
     for (int i = 0; i < height; i++)
         {
