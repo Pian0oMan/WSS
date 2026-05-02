@@ -76,7 +76,7 @@ public class gameMap {
                 randomNumber = rand.nextInt(100);
                 if (randomNumber >= TRADER_CHANCE && randomNumber < (ITEM_CHANCE + TRADER_CHANCE))
                 {
-                    grid[i][j].addItem(new FoodBonus(5, false);
+                    grid[i][j].addItem(new FoodBonus(5, false));
                 }
                 else if (randomNumber < TRADER_CHANCE)
                 {

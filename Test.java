@@ -1,7 +1,10 @@
+import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
+
+
 import java.util.*;
 
 public class Test {
-	public static void main (String [] args)
+	public static void main (String [] args) throws Exception
 	{
 		Scanner scan = new Scanner(System.in);
 
@@ -50,14 +53,15 @@ public class Test {
 		}
 
 		System.out.println("GO!");
+		
+		Display display = new Display(newMap, player);
+		display.render();	
+		
 
-		}
-			
-		public void displayMap()			
-		{
 
-		}
 	}
+}
+	
 
 	
 
