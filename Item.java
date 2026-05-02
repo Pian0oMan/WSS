@@ -1,6 +1,7 @@
 public abstract class Item {
 	protected boolean repeating;
-	
+
+
 	public Item(boolean repeating){
 		this.repeating = repeating;
 	}
@@ -9,4 +10,5 @@ public abstract class Item {
 	{
 		return repeating;
 	}
+
 }

@@ -12,8 +12,8 @@ public class GoldBonus extends Item {
 		return amount;
 	}
 
-	public void addToPlayer(Player player)
-	{
-		player.increaseGold(int amount);
-	}
+	// public void addToPlayer(Player player)
+	// {
+	// 	player.increaseGold(int amount);
+	// }
 }

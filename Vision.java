@@ -1,23 +1,23 @@
 public class Vision{
 
 	private Brain brain;
-	private Map map;
+	private gameMap map;
 	private int[][] sight;
 	private Square[] tiles;
 
-	public Vision(Brain b, Map m, String visionType){
+	public Vision(Brain b, gameMap m, String visionType){
 		brain = b;
 		map = m;
-		if(visionType.equals("Focused"){
+		if(visionType.equals("Focused")){
 			sight = new int[][] { {0, 1}, {-1, 1}, {1, 1}, {0, 2}, {-1, 2}, {1, 2} };
 		}
-		else if(visionType.equals("Eyes Peeled"){
+		else if(visionType.equals("Eyes Peeled")){
 			sight = new int[][] { {-1, 0}, {1, 0}, {0, 1}, {-1, 1}, {1, 1}, {0, 2} };
 		}
-		else if(visionType.equals("Far Sighted"){
+		else if(visionType.equals("Far Sighted")){
 			sight = new int[][] { {0, 1}, {0, 2}, {-1, 2}, {1, 2}, {-2, 3}, {2, 3} };
 		}
-		else if(visionType.equals("Cross Eyed"){
+		else if(visionType.equals("Cross Eyed")){
 			sight = new int[][] { {-1, 0}, {1, 0}, {-1, 1}, {1, 1}, {-2, 1}, {2, 1} };
 		}
 		else{

@@ -3,7 +3,7 @@ import java.util.List;
 
 public class Square {
 	private TerrainType terrain;
-	private List<Item> items;
+	private Item item;
 	
 	public Square(TerrainType terrain) {
 		this.terrain = terrain;
@@ -14,10 +14,12 @@ public class Square {
 		return terrain;
 	}
 	
-	public List<Item> getListItem()
+	public Item getListItem()
 	{
-		return items;
+		return item;
 	}
+
+
 	
 	public void addItem()
 	{
