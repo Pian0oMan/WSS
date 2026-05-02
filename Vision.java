@@ -28,7 +28,7 @@ public class Vision{
 	public void look(){
 		tiles = new Square[sight.length];
 		for(int i = 0; i < sight.length; i++){
-			tiles[i] = map.getMapSquare(brain.getXPos() + sight[i][0], brain.getYPos() + sight[i][1]);
+			tiles[i] = map.getMapSquare(brain.getRowPos() + sight[i][0], brain.getColPos() + sight[i][1]);
 		}
 	}
 

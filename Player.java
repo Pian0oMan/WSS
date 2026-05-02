@@ -13,7 +13,7 @@ public class Player {
 	private Square currentSquare;
 	private Brain brain;
 
-	public Player(Map map, int startRow, int startCol, String brainType, String visionType) {
+	public Player(gameMap map, int startRow, int startCol, String brainType, String visionType) {
 		maxStrength = 100;
 		currentStrength = maxStrength;
 		maxWater = 100;
