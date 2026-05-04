@@ -1,4 +1,3 @@
-//test change
 //keep track of what state the trader is currently in
 public enum TraderState {
     IDLE,
