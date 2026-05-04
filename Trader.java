@@ -1,3 +1,4 @@
+//test change
 public class Trader extends Item {
     private TraderState state;
     private int counterOffers;
