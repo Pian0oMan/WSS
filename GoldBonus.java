@@ -12,6 +12,8 @@ public class GoldBonus extends Item {
 		return amount;
 	}
 
+	public int getValue() { return amount * 3; }
+
 	// public void addToPlayer(Player player)
 	// {
 	// 	player.increaseGold(int amount);

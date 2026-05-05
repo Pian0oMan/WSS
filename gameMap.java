@@ -1,12 +1,9 @@
 import java.util.Random;
 public class gameMap {
 
-    //chances in integers representing CHANCE/100
-    private int ITEM_CHANCE = 10;
-    private int TRADER_CHANCE = 5;
-
     private int width;
     private int height;
+    private int difficulty;
     private Square[][] grid;
     private Random rand = new Random();
 
@@ -14,15 +11,16 @@ public class gameMap {
     {
         this.width = width;
         this.height = height;
+        this.difficulty = difficulty;
         this.grid = new Square[height][width];
 
         generateTerrain(difficulty);
-        populateItems();
+        populateItems(difficulty);
     }
 
     public void generateTerrain(int difficulty)
     {
-    for (int i = 0; i < height; i++)
+        for (int i = 0; i < height; i++)
         {
             for (int j = 0; j < width; j++)
             {
@@ -42,13 +40,12 @@ public class gameMap {
                 return TerrainType.PLAINS;
             if (roll <= 65)
                 return TerrainType.FOREST;
-			if (roll <= 75)
+            if (roll <= 75)
                 return TerrainType.MOUNTAIN;
-			if (roll <= 85)
-				return TerrainType.DESERT;
-			else {
-				return TerrainType.SWAMP;
-			}
+            if (roll <= 85)
+                return TerrainType.DESERT;
+            else
+                return TerrainType.SWAMP;
         }
         else
         {
@@ -56,33 +53,107 @@ public class gameMap {
                 return TerrainType.MOUNTAIN;
             if (roll <= 55)
                 return TerrainType.DESERT;
-			if (roll <= 75)
-				return TerrainType.SWAMP;
-			if (roll <= 85)
-				return TerrainType.PLAINS;
-			else {
-				return TerrainType.FOREST;
-			}
+            if (roll <= 75)
+                return TerrainType.SWAMP;
+            if (roll <= 85)
+                return TerrainType.PLAINS;
+            else
+                return TerrainType.FOREST;
         }
     }
-    
-    private void populateItems()
+
+    private void populateItems(int difficulty)
     {
-        int randomNumber;
         for (int i = 0; i < height; i++)
         {
             for (int j = 0; j < width; j++)
             {
-                randomNumber = rand.nextInt(100);
-                if (randomNumber >= TRADER_CHANCE && randomNumber < (ITEM_CHANCE + TRADER_CHANCE))
+                int roll = rand.nextInt(100);
+                TerrainType terrain = grid[i][j].getTerrain();
+
+                if (difficulty == 1)
                 {
-                    grid[i][j].addItem(new FoodBonus(5, false));
+                    // Easy mode
+                    if (roll < 5)
+                    {
+                        grid[i][j].addItem(new Trader("Trader"));
+                    }
+                    else if (roll < 15)
+                    {
+                        grid[i][j].addItem(new FoodBonus(getFoodAmount(terrain), false));
+                    }
+                    else if (roll < 25)
+                    {
+                        grid[i][j].addItem(new WaterBonus(getWaterAmount(terrain), false));
+                    }
+                    else if (roll < 35)
+                    {
+                        grid[i][j].addItem(new GoldBonus(getGoldAmount(terrain), false));
+                    }
                 }
-                else if (randomNumber < TRADER_CHANCE)
+                else
                 {
-                    grid[i][j].addItem(new Trader());
+                    // Hard mode
+                    if (roll < 5)
+                    {
+                        grid[i][j].addItem(new Trader("Trader"));
+                    }
+                    else if (roll < 10)
+                    {
+                        grid[i][j].addItem(new FoodBonus(getFoodAmount(terrain), false));
+                    }
+                    else if (roll < 15)
+                    {
+                        grid[i][j].addItem(new WaterBonus(getWaterAmount(terrain), false));
+                    }
+                    else if (roll < 20)
+                    {
+                        grid[i][j].addItem(new GoldBonus(getGoldAmount(terrain), false));
+                    }
                 }
             }
+        }
+    }
+
+    // how much food a terrain gives
+    private int getFoodAmount(TerrainType terrain)
+    {
+        switch (terrain)
+        {
+            case PLAINS:   return 20;
+            case FOREST:   return 15;
+            case MOUNTAIN: return 5;
+            case DESERT:   return 5;
+            case SWAMP:    return 10;
+            default:       return 10;
+        }
+    }
+
+    // how much water a terrain gives
+    private int getWaterAmount(TerrainType terrain)
+    {
+        switch (terrain)
+        {
+            case PLAINS:   return 15;
+            case FOREST:   return 25;
+            case MOUNTAIN: return 5;
+            case DESERT:   return 3;
+            case SWAMP:    return 15;
+            default:       return 10;
+        }
+    }
+
+    // how much gold a terrain gives
+    private int getGoldAmount(TerrainType terrain)
+    {
+        switch (terrain)
+        {
+            case PLAINS:   return 5;
+            case FOREST:   return 5;
+            case MOUNTAIN: return 25;
+            case DESERT:   return 15;
+            case SWAMP:    return 10;
+            default:       return 5;
         }
     }
 

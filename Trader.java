@@ -86,4 +86,7 @@ public class Trader extends Item {
     public TraderState getState() {
         return state;
     }
+
+	public int getValue() { return 0; }
+
 }

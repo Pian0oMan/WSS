@@ -20,6 +20,10 @@ public class Square {
 		return items;
 	}
 
+	public Item getItem() {
+    if (items.isEmpty()) return null;
+    return items.get(0);
+	}
 
 	
 	public void addItem(Item item)

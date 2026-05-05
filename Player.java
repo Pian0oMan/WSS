@@ -51,7 +51,7 @@ public class Player {
 		if (item == null) {
 			return;
 		}
-		if (!item.getRepeating()) {
+		if (!item.isRepeating()) {
 			currentSquare.getListItem().remove(item);
 		}
 		if (item instanceof FoodBonus) {

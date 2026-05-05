@@ -1,5 +1,4 @@
 import java.util.Arrays;
-import java.util.stream.IntStream;
 
 public class Vision{
 
@@ -59,9 +58,10 @@ public class Vision{
 		int best = -1;
 		for(int i = 0; i < tiles.length; i++){
 			Square s = tiles[i];
-			if(s.getItem() != null && (s.getItem() instanceof findType)){
+			if(s.getItem() != null && (findType.isInstance(s.getItem())))
+ 			{
 				if(best == -1){
-					best = s;
+					best = i;
 				}
 				else{
 					Square comp = tiles[best];
@@ -86,14 +86,14 @@ public class Vision{
 		if(best == -1){
 			return null;
 		}
-		return new Path(sight[i], tiles[i].getTerrain().getCosts());
+		return new Path(sight[best], tiles[best].getTerrain().getCosts());
 	}
 
 	public Path findEast(){
 		int best = -1;
 		for(int i = 0; i < tiles.length; i++){
 			if(best == -1){
-				best = s;
+				best = i;
 			}
 			else{
 				//compare if location is further east or not
@@ -117,15 +117,20 @@ public class Vision{
 		if(best == -1){
 			return null;
 		}
-		return new Path(sight[i], tiles[i].getTerrain().getCosts());
+		return new Path(sight[best], tiles[best].getTerrain().getCosts());
 	}
 
 	public int[] findFirstStep(Path p){
-		IntStream path = Arrays.stream(p.getPosition());
-		if(path.max() <= 1 && path.min() >= -1){
-			return p.getPosition();
-		}
+    int[] pos = p.getPosition();
+    
+    // already adjacent, just return it
+    if(Math.abs(pos[0]) <= 1 && Math.abs(pos[1]) <= 1){
+        return pos;
+    }
 
-		//implement later
-	}
+    // step one tile in the direction of the target
+    int stepRow = Integer.signum(pos[0]);
+    int stepCol = Integer.signum(pos[1]);
+    return new int[] { stepRow, stepCol };
+}
 }

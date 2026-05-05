@@ -1,6 +1,3 @@
-import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
-
-
 import java.util.*;
 
 public class Test {

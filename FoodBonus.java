@@ -13,6 +13,8 @@ public class FoodBonus extends Item {
 		return amount;
 	}
 
+	public int getValue() { return amount; }
+
 	// public void applyToPlayer(Player player) //will be initialized later
 	// {
 	// 	player.increaseFood(amount);		

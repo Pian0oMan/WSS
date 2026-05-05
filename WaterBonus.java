@@ -12,6 +12,8 @@ public class WaterBonus extends Item {
 		return amount;
 	}
 
+	public int getValue() { return amount; }
+
 	// public void addToPlayer(Player player)
 	// {
 	// 	player.increaseWater(amount);

@@ -6,11 +6,12 @@ public abstract class Item {
 		this.repeating = repeating;
 	}
 	
-	public boolean getRepeating()
+	public boolean isRepeating()
 	{
 		return repeating;
 	}
-
+	
+	public abstract int getValue();
 	public void collect(Player player) {}
 
 }

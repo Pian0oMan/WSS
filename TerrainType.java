@@ -16,4 +16,12 @@ public enum TerrainType {
 		this.waterCost = waterCost;
 		this.foodCost = foodCost;
 	}
+
+	public int[] getCosts()
+	{
+		return new int[] { moveCost, waterCost, foodCost };
+	}
+	// public int getMoveCost() { return moveCost; }
+	// public int getWaterCost() { return waterCost; }
+	// public int getFoodCost() { return foodCost; }
 }
