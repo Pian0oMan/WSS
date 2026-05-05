@@ -11,4 +11,6 @@ public abstract class Item {
 		return repeating;
 	}
 
+	public void collect(Player player) {}
+
 }

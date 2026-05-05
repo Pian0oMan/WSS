@@ -54,17 +54,29 @@ public class Player {
 		if (!item.getRepeating()) {
 			currentSquare.getListItem().remove(item);
 		}
-		// TODO: apply item effect once FoodBonus / WaterBonus / GoldBonus
-		// expose value/effect getters on Item.
+		if (item instanceof FoodBonus) {
+			currentFood = Math.min(currentFood + ((FoodBonus) item).getAmount(), maxFood);
+		} else if (item instanceof WaterBonus) {
+			currentWater = Math.min(currentWater + ((WaterBonus) item).getAmount(), maxWater);
+		} else if (item instanceof GoldBonus) {
+			currentGold += ((GoldBonus) item).getAmount();
+		}
 	}
 
-	public void trade(Trader trader, int offer) {
-		if (offer > currentGold) {
+	public void trade(Trader trader, TradeOffer offer) {
+		if (trader == null || offer == null) {
 			return;
 		}
-		currentGold -= offer;
-		// TODO: refine once Trader's is finalized — expected to return
-		// an Item in exchange for the gold offer.
+		if (offer.offeredFood > currentFood || offer.offeredWater > currentWater || offer.offeredGold > currentGold) {
+			return;
+		}
+		trader.interact(this);
+		trader.receiveOffer(offer);
+		if (trader.getState() == TraderState.TRADE_COMPLETED) {
+			currentFood  = Math.min(currentFood  - offer.offeredFood  + offer.requestedFood,  maxFood);
+			currentWater = Math.min(currentWater - offer.offeredWater + offer.requestedWater, maxWater);
+			currentGold  = currentGold - offer.offeredGold + offer.requestedGold;
+		}
 	}
 
 	public void updateResources() {
