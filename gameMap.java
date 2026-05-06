@@ -159,6 +159,10 @@ public class gameMap {
 
     public Square getMapSquare(int row, int column)
     {
+        if (row < 0 || row >= height || column < 0 || column >= width) return null;
         return grid[row][column];
     }
+
+    public int getWidth()  { return width;  }
+    public int getHeight() { return height; }
 }
